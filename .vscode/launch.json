@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DemoApplication",
+            "request": "launch",
+            "mainClass": "com.aiolosgs.clientbdemo.DemoApplication",
+            "projectName": "clientb-demo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DemoApplication",
+            "request": "launch",
+            "mainClass": "com.aiolosgs.clientademo.DemoApplication"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ApplicationStarter",
+            "request": "launch",
+            "mainClass": "com.bootdemo.ApplicationStarter",
+            "projectName": "springboot-demo"
+        }
+    ]
+}
