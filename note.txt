@@ -1,0 +1,1 @@
+使用配置中心从远程获取配置时，客户端启动失败，看日志是从locahost:8888这个url获取远程配置，也就是说客户端的配置文件中的spring.cloud.config.uri=http://localhost:7001/没有生效，这是由于加载配置时的优先级为bootstrap.*里面的配置 --> 链接configserver,加载远程配置 --> 加载application.*里面的配置，将application.properties改为bootstrap.properties，客户端启动成功。
