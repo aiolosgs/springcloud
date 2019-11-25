@@ -1,1 +1,8 @@
-使用配置中心从远程获取配置时，客户端启动失败，看日志是从locahost:8888这个url获取远程配置，也就是说客户端的配置文件中的spring.cloud.config.uri=http://localhost:7001/没有生效，这是由于加载配置时的优先级为bootstrap.*里面的配置 --> 链接configserver,加载远程配置 --> 加载application.*里面的配置，将application.properties改为bootstrap.properties，客户端启动成功。
+1.使用2.2.1版本springboot启动报错
+2.配置文件不生效
+pom中添加resource
+3.启动eureka-server时报错java.lang.AbstractMethodError: null
+springboot版本与springcloud版本不匹配
+4.feign接口注入失败
+@EnableFeignClients中指定扫描的包名
+5.使用配置中心从远程获取配置时，客户端启动失败，看日志是从locahost:8888这个url获取远程配置，也就是说客户端的配置文件中的spring.cloud.config.uri=http://localhost:7001/没有生效，这是由于加载配置时的优先级为bootstrap.*里面的配置 --> 链接configserver,加载远程配置 --> 加载application.*里面的配置，将application.properties改为bootstrap.properties，客户端启动成功。
