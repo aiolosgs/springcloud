@@ -6,3 +6,11 @@ springboot版本与springcloud版本不匹配
 4.feign接口注入失败
 @EnableFeignClients中指定扫描的包名
 5.使用配置中心从远程获取配置时，客户端启动失败，看日志是从locahost:8888这个url获取远程配置，也就是说客户端的配置文件中的spring.cloud.config.uri=http://localhost:7001/没有生效，这是由于加载配置时的优先级为bootstrap.*里面的配置 --> 链接configserver,加载远程配置 --> 加载application.*里面的配置，将application.properties改为bootstrap.properties，客户端启动成功。
+6.
+场景：启动一个eureka server，注册一个starter:8081服务和一个zuul网关，starter服务中集成了hystrix，并为service方法配置了fallback
+问题：通过zuul网关访问starter的service服务，并没有返回fallback的返回值
+原因：zuul中默认的超时设置时间比较短，fallback返回前触发了zuul的超时
+7.
+场景：接上个问题，再启动一个starter:8082服务，测试zuul的轮询机制，测试成功后，关掉starter:8082服务
+问题：注册中心中starter:8082服务依然存在，通过zuul访问starter的服务报错，日志显示依然访问的8082的服务
+原因：eureka注册中心有自我保护机制，触发后，虽然没有接收到客户端的心跳也不会注销掉客户端，zuul从注册中心中读取的服务信息，所以会继续访问8082的服务
